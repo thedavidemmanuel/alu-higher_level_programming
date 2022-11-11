@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-A class 'Rectangle' that defines a rectangle by: (based on 0-rectangle.py)
-"""
+"""Define a rectangle"""
 
 
 class Rectangle:
@@ -11,6 +9,29 @@ class Rectangle:
         """Initialize data."""
         self.width = width
         self.height = height
+
+    def __str__(self):
+        """Returns the rectangle with the character #"""
+        if self.__width == 0 or self.__height == 0:
+            return ''
+        rectangle = ''
+        for i in range(self.__height):
+            for j in range(self.__width):
+                rectangle += '#'
+            rectangle += '\n'
+        return rectangle[:-1]
+
+    def __repr__(self):
+        """Return a string representation of the rectangle to be able t
+        o recreate a new instance by using eval() (see example below)
+        """
+        return "Rectangle({}, {})".format(self.__width, self.__height)
+
+    def __del__(self):
+        """Print the message Bye rectangle...
+        (... being 3 dots not ellipsis) when an
+        instance of Rectangle is deleted"""
+        print("Bye rectangle...")
 
     @property
     def width(self):
@@ -45,3 +66,13 @@ class Rectangle:
         if value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
+
+    def area(self):
+        """returns the rectangle area."""
+        return self.__width * self.__height
+
+    def perimeter(self):
+        """Returns the rectangle perimeter"""
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        return 2 * (self.__width + self.__height)

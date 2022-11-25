@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Script sends a POST request"""
+"""Search API"""
 import requests
 import sys
 

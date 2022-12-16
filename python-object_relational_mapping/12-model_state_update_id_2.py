@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Prints the State object with the name passed as argument from the db
+Changes the name of a State object from the database hbtn_0e_6_usa
 """
 import sys
 from model_state import Base, State
@@ -15,5 +15,8 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).filter(State.name == sys.argv[4]).first()
-    print("Not found" if not state else state.id)
+    stateUpdated = session.query(State).filter(State.id == 2).first()
+
+    if stateUpdated:
+        stateUpdated.name = 'New Mexico'
+        session.commit()
